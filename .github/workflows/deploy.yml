@@ -55,8 +55,8 @@ jobs:
               sudo docker ps -a -q -f name=vote | grep -q . && docker rm -f vote
               sudo docker ps -a -q -f name=redis | grep -q . && docker rm -f redis
               cd /home/ubuntu
-              sudo docker compose down --remove-orphans
-              sudo docker compose pull
-              sudo docker compose up -d     
+              sudo docker-compose down --remove-orphans
+              sudo docker-compose pull
+              sudo docker-compose up -d     
           "
           rm -f private_key.pem

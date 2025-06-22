@@ -38,6 +38,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/","users/sign-in", "users/sign-up"
                                 ,"/user/**"
+                                ,"/candidates/**"
+                                ,"/votes/teams/status"
                                 ,"/swagger-ui/**"
                                 ,"/swagger-resources/**"
                                 ,"/v3/api-docs/**"

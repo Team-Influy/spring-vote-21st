@@ -8,7 +8,7 @@ import ceos.study.vote.domain.user.entity.User;
 import ceos.study.vote.domain.user.repository.UserRepository;
 import ceos.study.vote.global.apiPayload.code.status.ErrorStatus;
 import ceos.study.vote.global.apiPayload.exception.GeneralException;
-import ceos.study.vote.global.common.Part;
+import ceos.study.vote.global.common.PartType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +36,7 @@ public class LeaderServiceImpl implements LeaderService {
     }
 
     @Override
-    public List<Leader> getCandidates(Part part) {
+    public List<Leader> getCandidates(PartType part) {
         return leaderRepository.findAllByPart(part);
     }
 }

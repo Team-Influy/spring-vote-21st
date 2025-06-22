@@ -16,6 +16,8 @@ public class UserConverter {
                 .team(request.getTeam())
                 .part(request.getPart())
                 .roleType(RoleType.USER)
+                .leaderVote(false)
+                .teamVote(false)
                 .build();
     }
 

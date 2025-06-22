@@ -1,22 +1,22 @@
 [
   {
-    "name" : "인플루이",
-    "description": "팀 설명"
+    "team" : "INFLUY",
+    "description": "인플루언서의 상품 판매를 간편화하는 퍼스널 셀렉트 스토어"
   },
   {
-    "name" : "하니홈",
-    "description": "팀 설명"
+    "team" : "HANIHOME",
+    "description": "해외 한인 숙소 매칭 플랫폼"
   },
   {
-    "name" : "프로메사",
-    "description": "팀 설명"
+    "team" : "PROMESA",
+    "description": "도예 전공자들의 작품을 전시하고 판매하는 플랫폼"
   },
   {
-    "name" : "LOOPZ",
-    "description": "팀 설명"
+    "team" : "LOOPZ",
+    "description": "일회성 비품 폐기물의 업사이클링 판매 플랫폼"
   },
   {
-    "name" : "이어드림",
-    "description": "팀 설명"
+    "team" : "DEARDREAM",
+    "description": "치매 환자 보호자들이 함께 기록하고, 상황별 대응법을 바로 찾을 수 있는 치매 돌봄 파트너"
   }
 ]

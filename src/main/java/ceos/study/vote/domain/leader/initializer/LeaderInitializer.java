@@ -2,7 +2,7 @@ package ceos.study.vote.domain.leader.initializer;
 
 import ceos.study.vote.domain.leader.entity.Leader;
 import ceos.study.vote.domain.leader.repository.LeaderRepository;
-import ceos.study.vote.global.common.Part;
+import ceos.study.vote.global.common.PartType;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
@@ -45,7 +45,7 @@ public class LeaderInitializer implements CommandLineRunner {
             }
             List<Leader> leaders = leaderDTOs.stream().map(
                     leaderDTO->Leader.builder()
-                            .part(Part.BE)
+                            .part(PartType.BE)
                             .name(leaderDTO.name)
                             .description(leaderDTO.description)
                             .build()).toList();

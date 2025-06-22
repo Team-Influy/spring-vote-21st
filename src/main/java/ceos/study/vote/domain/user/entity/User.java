@@ -32,4 +32,19 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
+
+    @Builder.Default
+    private Boolean leaderVote = false;
+
+    @Builder.Default
+    private Boolean teamVote = false;
+
+    public void setLeaderVoteTrue(){
+        this.leaderVote = true;
+    }
+
+    public void setTeamVoteTrue(){
+        this.teamVote = true;
+    }
+
 }

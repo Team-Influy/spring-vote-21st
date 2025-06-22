@@ -14,7 +14,7 @@ public class CorsConfig {
 
         // 허용할 Origin
         corsConfig.addAllowedOrigin("http://localhost:3000");
-        corsConfig.addAllowedOrigin("https://next-vote-21th-smoky.vercel.app/");
+        corsConfig.addAllowedOrigin("https://next-vote-21th-smoky.vercel.app");
 
         // 요청 메서드, 헤더
         corsConfig.addAllowedMethod("*");

@@ -11,6 +11,7 @@ import ceos.study.vote.global.apiPayload.ApiResponse;
 import ceos.study.vote.global.common.PartType;
 import ceos.study.vote.global.jwt.CustomUserDetails;
 import ceos.study.vote.global.jwt.CustomUserDetailsServiceImpl;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name="파트장 투표 API")
 public class LeaderController {
 
     private final LeaderService leaderService;

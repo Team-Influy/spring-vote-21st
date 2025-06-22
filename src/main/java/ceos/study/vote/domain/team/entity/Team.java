@@ -16,16 +16,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Team extends BaseEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     private TeamType name;
 
-    @Nullable
+    @NotNull
     private String description;
 
     @Builder.Default
+    @Column(nullable = false)
     private Integer voteNum = 0;
+
+    public void addVote() { voteNum++; }
 }

@@ -1,5 +1,6 @@
 package ceos.study.vote.domain.user.entity;
 
+import ceos.study.vote.global.common.TeamType;
 import ceos.study.vote.global.common.BaseEntity;
 import ceos.study.vote.global.common.PartType;
 import ceos.study.vote.global.common.TeamType;

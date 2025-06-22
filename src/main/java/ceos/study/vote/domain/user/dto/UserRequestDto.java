@@ -29,7 +29,7 @@ public class UserRequestDto {
         private String password;
 
         @NotNull
-        @Schema(description = "팀", example = "INFLUY")
+        @Schema(description = "팀 [INFLUY, HANIHOME, PROMESA, LOOPZ, DEARDREAM]", example = "INFLUY")
         private TeamType team;
 
         @NotNull

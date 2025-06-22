@@ -1,0 +1,21 @@
+services:
+  spring:
+    image: challonsy/vote
+    container_name: vote
+    restart: no
+    ports:
+      - "8080:8080"
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /home/ubuntu/nginx/vote.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - spring
+

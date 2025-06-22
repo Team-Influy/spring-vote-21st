@@ -39,7 +39,7 @@ public class TeamServiceImpl implements TeamService {
             throw new GeneralException(ErrorStatus.ALREADY_VOTED);
         }
 
-        return TeamConverter.toVoteResultDto(user);
+        return TeamConverter.toVoteResultDto(user, team);
     }
 
     @Override

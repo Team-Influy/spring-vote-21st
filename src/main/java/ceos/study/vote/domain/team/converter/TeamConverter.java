@@ -7,9 +7,11 @@ import ceos.study.vote.domain.user.entity.User;
 import java.util.List;
 
 public class TeamConverter {
-    public static TeamResponseDto.VoteResultDto toVoteResultDto(User user) {
+    public static TeamResponseDto.VoteResultDto toVoteResultDto(User user, Team team) {
         return TeamResponseDto.VoteResultDto.builder()
                 .id(user.getId())
+                .teamId(team.getId())
+                .teamType(team.getTeam())
                 .build();
     }
 
@@ -17,6 +19,7 @@ public class TeamConverter {
         return TeamResponseDto.VoteStatusDto.builder()
                 .id(team.getId())
                 .team(team.getTeam())
+                .description(team.getDescription())
                 .numVotes(team.getVoteNum())
                 .ratioVotes(Math.round(((double) team.getVoteNum() / totalVotes) * 10000) / 100.0)
                 .build();

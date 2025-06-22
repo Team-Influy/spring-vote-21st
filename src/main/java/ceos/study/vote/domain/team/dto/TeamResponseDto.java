@@ -17,6 +17,12 @@ public class TeamResponseDto {
     public static class VoteResultDto {
         @Schema(description = "유저 id", example = "1")
         private Long id;
+
+        @Schema(description = "투표한 팀 id", example = "2")
+        private Long teamId;
+
+        @Schema(description = "투표한 팀 이름", example = "INFLUY")
+        private TeamType teamType;
     }
 
     @Getter
@@ -29,6 +35,9 @@ public class TeamResponseDto {
 
         @Schema(description = "팀 이름", example = "INFLUY")
         private TeamType team;
+
+        @Schema(description = "팀 설명", example = "옹냥냥")
+        private String description;
 
         @Schema(description = "득표수", example = "7")
         private Integer numVotes;

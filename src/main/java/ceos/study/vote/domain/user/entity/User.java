@@ -1,10 +1,9 @@
 package ceos.study.vote.domain.user.entity;
 
-import ceos.study.vote.domain.team.entity.TeamType;
+import ceos.study.vote.global.common.TeamType;
 import ceos.study.vote.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Getter

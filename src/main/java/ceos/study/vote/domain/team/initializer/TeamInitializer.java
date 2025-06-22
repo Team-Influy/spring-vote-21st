@@ -1,7 +1,7 @@
 package ceos.study.vote.domain.team.initializer;
 
 import ceos.study.vote.domain.team.entity.Team;
-import ceos.study.vote.domain.team.entity.TeamType;
+import ceos.study.vote.global.common.TeamType;
 import ceos.study.vote.domain.team.repository.TeamRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

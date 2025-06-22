@@ -1,6 +1,6 @@
 package ceos.study.vote.domain.team.dto;
 
-import ceos.study.vote.domain.team.entity.TeamType;
+import ceos.study.vote.global.common.TeamType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

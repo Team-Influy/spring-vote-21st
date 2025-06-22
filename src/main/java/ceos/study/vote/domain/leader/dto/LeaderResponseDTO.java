@@ -1,6 +1,5 @@
 package ceos.study.vote.domain.leader.dto;
 
-import ceos.study.vote.global.common.Part;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,6 +1,7 @@
 package ceos.study.vote.domain.team.entity;
 
 import ceos.study.vote.global.common.BaseEntity;
+import ceos.study.vote.global.common.TeamType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

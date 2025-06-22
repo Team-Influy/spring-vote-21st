@@ -1,7 +1,15 @@
 package ceos.study.vote.domain.team.repository;
 
 import ceos.study.vote.domain.team.entity.Team;
+import ceos.study.vote.domain.team.entity.TeamType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.Optional;
 
 public interface TeamRepository extends JpaRepository<Team, Long> {
+    Optional<Team> findByTeam(TeamType team);
+
+    @Query("SELECT SUM(t.voteNum) FROM Team t")
+    Integer getTotalVotes();
 }

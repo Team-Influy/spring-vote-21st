@@ -23,6 +23,11 @@ public enum ErrorStatus implements BaseCode {
     //파트장 관련 에러 응답
     LEADER_NOT_FOUND(HttpStatus.NOT_FOUND, "LEADER NOT FOUND", "파트장 후보를 찾을 수 없습니다."),
 
+    //팀 관련 에러 응답
+    TEAM_NOT_FOUND(HttpStatus.NOT_FOUND, "TEAM NOT FOUND", "팀 후보를 찾을 수 없습니다."),
+    NOT_VALID_VOTE(HttpStatus.BAD_REQUEST, "NOT VALID VOTE", "본인 팀에게 투표할 수 없습니다."),
+    ALREADY_VOTED(HttpStatus.BAD_REQUEST, "ALREADY VOTED", "이미 투표했습니다."),
+
     // 로그인 관련 에러 응답
     WRONG_PASSWORD(HttpStatus.BAD_REQUEST, "WRONG PASSWORD", "비밀번호 입력이 틀렸습니다."),
     INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "INVALID TOKEN", "토큰이 유효하지 않습니다."),

@@ -1,10 +1,8 @@
 package ceos.study.vote.domain.team.initializer;
 
-import ceos.study.vote.domain.leader.entity.Leader;
-import ceos.study.vote.domain.leader.initializer.LeaderInitializer;
 import ceos.study.vote.domain.team.entity.Team;
+import ceos.study.vote.domain.team.entity.TeamType;
 import ceos.study.vote.domain.team.repository.TeamRepository;
-import ceos.study.vote.global.common.Part;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
@@ -28,7 +26,7 @@ public class TeamInitializer implements CommandLineRunner {
     @Getter
     @Setter
     public static class TeamJSON{
-        private String name;
+        private TeamType team;
         private String description;
     }
 
@@ -45,12 +43,12 @@ public class TeamInitializer implements CommandLineRunner {
             List<TeamInitializer.TeamJSON> teamDTOs = objectMapper.readValue(inputStream, new TypeReference<List<TeamInitializer.TeamJSON>>() {
             });
             for (TeamInitializer.TeamJSON teamDTO : teamDTOs) {
-                System.out.println(teamDTO.name + ":" + teamDTO.description);
+                System.out.println(teamDTO.team + ":" + teamDTO.description);
             }
             List<Team> teams = teamDTOs.stream().map(
-                    leaderDTO -> Team.builder()
-                            .name(leaderDTO.name)
-                            .description(leaderDTO.description)
+                    teamDTO -> Team.builder()
+                            .team(teamDTO.team)
+                            .description(teamDTO.description)
                             .build()).toList();
 
             teamRepository.saveAll(teams);

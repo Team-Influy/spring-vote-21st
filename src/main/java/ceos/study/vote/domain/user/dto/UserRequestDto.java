@@ -26,7 +26,7 @@ public class UserRequestDto {
         private String password;
 
         @NotEmpty
-        @Schema(description = "팀", example = "influy")
+        @Schema(description = "팀 [INFLUY, HANIHOME, PROMESA, LOOPZ, DEARDREAM]", example = "INFLUY")
         private String team;
 
         @NotEmpty

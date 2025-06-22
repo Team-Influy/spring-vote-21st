@@ -1,5 +1,6 @@
 package ceos.study.vote.domain.user.entity;
 
+import ceos.study.vote.domain.team.entity.TeamType;
 import ceos.study.vote.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,8 +25,8 @@ public class User extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String password;
 
-    @Column(nullable = false, length = 10)
-    private String team;
+    @Enumerated(EnumType.STRING)
+    private TeamType team;
 
     @Column(nullable = false, length = 10)
     private String part;

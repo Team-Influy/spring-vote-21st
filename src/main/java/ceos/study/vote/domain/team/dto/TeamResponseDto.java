@@ -15,6 +15,15 @@ public class TeamResponseDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class VoteResultDto {
+        @Schema(description = "유저 id", example = "1")
+        private Long id;
+    }
+
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class VoteStatusDto {
         @Schema(description = "팀 id", example = "1")
         private Long id;
 
@@ -23,18 +32,35 @@ public class TeamResponseDto {
 
         @Schema(description = "득표수", example = "7")
         private Integer numVotes;
+
+        @Schema(description = "득표 퍼센트 (해당 팀 득표수 / 전체 투표수)", example = "15.0")
+        private Double ratioVotes;
     }
 
     @Getter
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class VoteResultListDto {
+    public static class VoteStatusListDto {
         @Schema(description = "팀별 투표 결과 리스트")
-        private List<VoteResultDto> resultList;
+        private List<VoteStatusDto> resultList;
 
         @Schema(description = "총 투표수", example = "20")
         private Integer totalVotes;
     }
 
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CandidateDto {
+        @Schema(description = "팀 id", example = "1")
+        private Long id;
+
+        @Schema(description = "팀 이름", example = "INFLUY")
+        private TeamType team;
+
+        @Schema(description = "팀 설명", example = "옹냥냥")
+        private String description;
+    }
 }

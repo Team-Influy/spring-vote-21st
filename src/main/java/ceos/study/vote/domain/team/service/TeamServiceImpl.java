@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TeamServiceImpl implements TeamService {
@@ -21,7 +23,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     @Transactional
-    public TeamResponseDto.VoteResultListDto vote(User user, TeamRequestDto.VoteDto request) {
+    public TeamResponseDto.VoteResultDto vote(User user, TeamRequestDto.VoteDto request) {
         Team team = teamRepository.findByTeam(request.getTeam())
                 .orElseThrow(() -> new GeneralException(ErrorStatus.TEAM_NOT_FOUND));
 
@@ -37,6 +39,17 @@ public class TeamServiceImpl implements TeamService {
             throw new GeneralException(ErrorStatus.ALREADY_VOTED);
         }
 
-        return TeamConverter.toVoteResultListDto(teamRepository.findAll().stream().toList(), teamRepository.getTotalVotes());
+        return TeamConverter.toVoteResultDto(user);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public TeamResponseDto.VoteStatusListDto status() {
+        return TeamConverter.toVoteStatusListDto(teamRepository.findAll().stream().toList(), teamRepository.getTotalVotes());
+    }
+
+    @Override
+    public List<TeamResponseDto.CandidateDto> candidates() {
+        return TeamConverter.toCandidateDtoList(teamRepository.findAll().stream().toList());
     }
 }

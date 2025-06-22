@@ -23,9 +23,20 @@ public class TeamRestController {
 
     @PostMapping("votes/teams")
     @Operation(summary = "데모데이 투표")
-    public ApiResponse<TeamResponseDto.VoteResultListDto> vote(@AuthenticationPrincipal CustomUserDetails userDetails,
+    public ApiResponse<TeamResponseDto.VoteResultDto> vote(@AuthenticationPrincipal CustomUserDetails userDetails,
                                                                @RequestBody @Valid TeamRequestDto.VoteDto request) {
         User user = userDetails.getUser();
         return ApiResponse.onSuccess(teamService.vote(user, request));
+    }
+
+    @GetMapping("votes/teams/status")
+    @Operation(summary = "데모데이 투표 현황 조회")
+    public ApiResponse<TeamResponseDto.VoteStatusListDto> status() {
+        return ApiResponse.onSuccess(teamService.status());
+    }
+
+    @GetMapping("candidates/teams")
+    public ApiResponse<List<TeamResponseDto.CandidateDto>> candidates() {
+        return ApiResponse.onSuccess(teamService.candidates());
     }
 }

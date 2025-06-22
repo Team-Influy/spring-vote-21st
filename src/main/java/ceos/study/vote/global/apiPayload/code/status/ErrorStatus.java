@@ -22,6 +22,10 @@ public enum ErrorStatus implements BaseCode {
     
     //파트장 관련 에러 응답
     LEADER_NOT_FOUND(HttpStatus.NOT_FOUND, "LEADER NOT FOUND", "파트장 후보를 찾을 수 없습니다."),
+    
+    //투표 관련 에러 응당
+    WRONG_PART(HttpStatus.FORBIDDEN, "WRONG PART", "투표자와 투표 대상의 파트가 다릅니다."),
+    ALREADY_VOTED(HttpStatus.FORBIDDEN, "WRONG PART", "투표는 한 번만 할 수 있습니다."),
 
     // 로그인 관련 에러 응답
     WRONG_PASSWORD(HttpStatus.BAD_REQUEST, "WRONG PASSWORD", "비밀번호 입력이 틀렸습니다."),

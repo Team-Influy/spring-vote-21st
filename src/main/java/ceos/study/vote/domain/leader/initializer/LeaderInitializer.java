@@ -2,7 +2,7 @@ package ceos.study.vote.domain.leader.initializer;
 
 import ceos.study.vote.domain.leader.entity.Leader;
 import ceos.study.vote.domain.leader.repository.LeaderRepository;
-import ceos.study.vote.global.common.Part;
+import ceos.study.vote.global.common.PartType;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
@@ -32,25 +32,39 @@ public class LeaderInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (leaderRepository.count()==0){
-            ClassPathResource resource = new ClassPathResource("initializerData/BELeaderInfo.json");
-            if (!resource.exists()) {
-                throw new IOException("파일이 존재하지 않습니다.");
+            ClassPathResource BEResource = new ClassPathResource("initializerData/BELeaderInfo.json");
+            ClassPathResource FEResource = new ClassPathResource("initializerData/FELeaderInfo.json");
+            if (!BEResource.exists()) {
+                throw new IOException("BE 파일이 존재하지 않습니다.");
             }
-            InputStream inputStream = resource.getInputStream();
+            if(!FEResource.exists()){
+                throw new IOException("FE 파일이 존재하지 않습니다.");
+            }
+            InputStream BEInputStream = BEResource.getInputStream();
+            InputStream FEInputStream = FEResource.getInputStream();
 
             //JSON->JAVA 객체
-            List<LeaderJSON> leaderDTOs = objectMapper.readValue(inputStream, new TypeReference<List<LeaderJSON>>() {});
-            for (LeaderJSON leaderDTO : leaderDTOs) {
-                System.out.println(leaderDTO.name+":"+leaderDTO.description);
-            }
-            List<Leader> leaders = leaderDTOs.stream().map(
+            List<LeaderJSON> leaderDTOs = objectMapper.readValue(BEInputStream, new TypeReference<List<LeaderJSON>>() {});
+
+            List<Leader> BELeaders = leaderDTOs.stream().map(
                     leaderDTO->Leader.builder()
-                            .part(Part.BE)
+                            .part(PartType.BE)
                             .name(leaderDTO.name)
                             .description(leaderDTO.description)
                             .build()).toList();
 
-            leaderRepository.saveAll(leaders);
+            leaderRepository.saveAll(BELeaders);
+
+            leaderDTOs = objectMapper.readValue(FEInputStream, new TypeReference<List<LeaderJSON>>() {});
+
+            List<Leader> FELeaders = leaderDTOs.stream().map(
+                    leaderDTO->Leader.builder()
+                            .part(PartType.FE)
+                            .name(leaderDTO.name)
+                            .description(leaderDTO.description)
+                            .build()).toList();
+
+            leaderRepository.saveAll(FELeaders);
 
         }
     }

@@ -1,7 +1,7 @@
 package ceos.study.vote.domain.leader.entity;
 
 import ceos.study.vote.global.common.BaseEntity;
-import ceos.study.vote.global.common.Part;
+import ceos.study.vote.global.common.PartType;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +23,7 @@ public class Leader extends BaseEntity {
     private String name;
 
     @NotNull
-    private Part part;
+    private PartType part;
 
     @Builder.Default
     private Integer voteNum = 0;

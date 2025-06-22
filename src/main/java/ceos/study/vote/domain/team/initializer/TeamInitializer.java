@@ -1,10 +1,8 @@
 package ceos.study.vote.domain.team.initializer;
 
-import ceos.study.vote.domain.leader.entity.Leader;
-import ceos.study.vote.domain.leader.initializer.LeaderInitializer;
 import ceos.study.vote.domain.team.entity.Team;
 import ceos.study.vote.domain.team.repository.TeamRepository;
-import ceos.study.vote.global.common.Part;
+import ceos.study.vote.global.common.TeamType;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
@@ -28,7 +26,7 @@ public class TeamInitializer implements CommandLineRunner {
     @Getter
     @Setter
     public static class TeamJSON{
-        private String name;
+        private TeamType name;
         private String description;
     }
 

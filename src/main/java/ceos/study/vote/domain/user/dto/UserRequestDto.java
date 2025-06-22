@@ -1,7 +1,10 @@
 package ceos.study.vote.domain.user.dto;
 
+import ceos.study.vote.global.common.PartType;
+import ceos.study.vote.global.common.TeamType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,13 +28,13 @@ public class UserRequestDto {
         @Schema(description = "비밀번호", example = "12345678")
         private String password;
 
-        @NotEmpty
-        @Schema(description = "팀", example = "influy")
-        private String team;
+        @NotNull
+        @Schema(description = "팀", example = "INFLUY")
+        private TeamType team;
 
-        @NotEmpty
-        @Schema(description = "파트", example = "백엔드")
-        private String part;
+        @NotNull
+        @Schema(description = "파트", example = "BE")
+        private PartType part;
     }
 
     @Getter

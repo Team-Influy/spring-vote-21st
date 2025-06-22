@@ -8,13 +8,12 @@ import ceos.study.vote.domain.leader.entity.Leader;
 import ceos.study.vote.domain.leader.service.LeaderService;
 import ceos.study.vote.domain.user.entity.User;
 import ceos.study.vote.global.apiPayload.ApiResponse;
+import ceos.study.vote.global.common.PartType;
 import ceos.study.vote.global.jwt.CustomUserDetails;
 import ceos.study.vote.global.jwt.CustomUserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,12 +25,32 @@ public class LeaderController {
     private final CustomUserDetailsServiceImpl customUserDetailsService;
 
     @PostMapping("votes/leaders")
-    public ApiResponse<LeaderResponseDTO.GeneralList> vote(@RequestBody LeaderRequestDTO.Vote request,
-                                    @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public ApiResponse<LeaderResponseDTO.VoteResult> vote(@RequestBody LeaderRequestDTO.Vote request,
+                                                          @AuthenticationPrincipal CustomUserDetails userDetails) {
         User user = customUserDetailsService.findUserByUserDetails(userDetails);
-        Integer totalVotes = leaderService.vote(request,user);
-        List<Leader> candidates = leaderService.getCandidates(request.getPart());
-        LeaderResponseDTO.GeneralList body = LeaderConverter.toGeneralListDTO(candidates, totalVotes);
+        Leader leader = leaderService.vote(request,user);
+        LeaderResponseDTO.VoteResult body = LeaderConverter.toVoteResult(leader);
+
+        return ApiResponse.onSuccess(body);
+    }
+
+    //후보자 정보 조회
+    @GetMapping("candidates/leaders/{part}")
+    public ApiResponse<List<LeaderResponseDTO.Info>> details(@PathVariable("part") PartType part) {
+
+        List<Leader> candidates = leaderService.getCandidates(part);
+        List<LeaderResponseDTO.Info> body = candidates.stream().map(LeaderConverter::toInfoDTO).toList();
+
+        return ApiResponse.onSuccess(body);
+    }
+
+    //투표 현황
+    @GetMapping("votes/leaders/{part}/status")
+    public ApiResponse<LeaderResponseDTO.StatsList> voteStats(@PathVariable("part") PartType part) {
+
+        List<Leader> candidates = leaderService.getCandidates(part);
+        Integer totalVotes = leaderService.getTotalVotes(part);
+        LeaderResponseDTO.StatsList body = LeaderConverter.toStatsList(candidates,totalVotes);
 
         return ApiResponse.onSuccess(body);
     }

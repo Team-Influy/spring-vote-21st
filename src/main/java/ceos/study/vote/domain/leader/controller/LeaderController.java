@@ -50,7 +50,7 @@ public class LeaderController {
     @GetMapping("votes/leaders/{part}/status")
     public ApiResponse<LeaderResponseDTO.StatsList> voteStats(@PathVariable("part") PartType part) {
 
-        List<Leader> candidates = leaderService.getCandidates(part);
+        List<Leader> candidates = leaderService.getCandidatesOrderByVoteNum(part);
         Integer totalVotes = leaderService.getTotalVotes(part);
         LeaderResponseDTO.StatsList body = LeaderConverter.toStatsList(candidates,totalVotes);
 

@@ -45,12 +45,19 @@ public class LeaderServiceImpl implements LeaderService {
 
     @Override
     public List<Leader> getCandidates(PartType part) {
+
         return leaderRepository.findAllByPart(part);
     }
 
     @Override
     public Integer getTotalVotes(PartType part) {
+
         return userRepository.countUserByLeaderVoteTrueAndPart(part);
+    }
+
+    @Override
+    public List<Leader> getCandidatesOrderByVoteNum(PartType part) {
+        return leaderRepository.findAllByPartOrderByVoteNumDesc(part);
     }
 
 

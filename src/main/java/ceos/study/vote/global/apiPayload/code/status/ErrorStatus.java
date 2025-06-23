@@ -1,0 +1,65 @@
+package ceos.study.vote.global.apiPayload.code.status;
+
+import ceos.study.vote.global.apiPayload.code.BaseCode;
+import ceos.study.vote.global.apiPayload.code.ReasonDTO;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+@Getter
+@AllArgsConstructor
+public enum ErrorStatus implements BaseCode {
+
+    // 기본 에러 응답
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "COMMON500", "서버 에러."),
+    BAD_REQUEST(HttpStatus.BAD_REQUEST,"COMMON400","잘못된 요청입니다."),
+    UNAUTHORIZED(HttpStatus.UNAUTHORIZED,"COMMON401","인증이 필요합니다."),
+    FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403", "금지된 요청입니다."),
+
+    // 유저 관련 에러 응답
+    USER_ALREADY_EXISTS(HttpStatus.BAD_REQUEST, "USER ALREADY EXISTS", "유저가 이미 존재합니다."),
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER NOT FOUND", "유저를 찾을 수 없습니다."),
+    
+    //파트장 관련 에러 응답
+    LEADER_NOT_FOUND(HttpStatus.NOT_FOUND, "LEADER NOT FOUND", "파트장 후보를 찾을 수 없습니다."),
+    
+    //투표 관련 에러 응당
+    WRONG_PART(HttpStatus.FORBIDDEN, "WRONG PART", "투표자와 투표 대상의 파트가 다릅니다."),
+    ALREADY_VOTED(HttpStatus.FORBIDDEN, "WRONG PART", "투표는 한 번만 할 수 있습니다."),
+
+    //팀 관련 에러 응답
+    TEAM_NOT_FOUND(HttpStatus.NOT_FOUND, "TEAM NOT FOUND", "팀 후보를 찾을 수 없습니다."),
+    NOT_VALID_VOTE(HttpStatus.BAD_REQUEST, "NOT VALID VOTE", "본인 팀에게 투표할 수 없습니다."),
+
+    // 로그인 관련 에러 응답
+    WRONG_PASSWORD(HttpStatus.BAD_REQUEST, "WRONG PASSWORD", "비밀번호 입력이 틀렸습니다."),
+    INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "INVALID TOKEN", "토큰이 유효하지 않습니다."),
+    EXPIRED_TOKEN(HttpStatus.UNAUTHORIZED, "EXPIRED TOKEN", "만료된 토큰입니다."),
+    UNSUPPORTED_TOKEN(HttpStatus.UNAUTHORIZED, "UNSUPPORTED TOKEN", "지원하지 않는 토큰입니다."),
+    REDIS_KEY_NOT_FOUND(HttpStatus.NOT_FOUND, "REDIS KEY NOT FOUND", "요청한 키가 Redis에 존재하지 않습니다."),
+    INVALID_SIGNATURE(HttpStatus.UNAUTHORIZED, "INVALID SIGNATURE", "잘못된 JWT 서명입니다");
+
+
+    private final HttpStatus httpStatus;
+    private final String code;
+    private final String message;
+
+    @Override
+    public ReasonDTO getReason() {
+        return ReasonDTO.builder()
+                .message(message)
+                .code(code)
+                .isSuccess(false)
+                .build();
+    }
+
+    @Override
+    public ReasonDTO getReasonHttpStatus() {
+        return ReasonDTO.builder()
+                .message(message)
+                .code(code)
+                .isSuccess(false)
+                .httpStatus(httpStatus)
+                .build();
+    }
+}

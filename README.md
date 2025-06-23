@@ -48,3 +48,13 @@ Example)
 - 각자 작업 진행 후 Pull Request 올리기 (절대 직접 커밋 x)
 - Pull Request 제목: `동작: 이슈 이름`
 - 1명 이상 팀원의 승인이 있으면 Push 가능하도록 룰 설정
+
+## 투표 기능 구현
+### ERD
+![erd](readme-src/erd.png)
+
+### API 명세서
+![api](readme-src/api.png)
+
+### 배포 사이트
+- [vote.influy.com](https://vote.influy.com/swagger-ui/index.html#)

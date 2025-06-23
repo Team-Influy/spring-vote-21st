@@ -2,6 +2,7 @@ package ceos.study.vote.domain.team.entity;
 
 import ceos.study.vote.global.common.BaseEntity;
 import ceos.study.vote.global.common.TeamType;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class Team extends BaseEntity {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private TeamType team;
+    private TeamType name;
 
     @NotNull
     private String description;

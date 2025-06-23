@@ -2,7 +2,10 @@ package ceos.study.vote.domain.user.entity;
 
 import ceos.study.vote.global.common.TeamType;
 import ceos.study.vote.global.common.BaseEntity;
+import ceos.study.vote.global.common.PartType;
+import ceos.study.vote.global.common.TeamType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -24,11 +27,13 @@ public class User extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String password;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private TeamType team;
 
-    @Column(nullable = false, length = 10)
-    private String part;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private PartType part;
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;

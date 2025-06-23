@@ -8,7 +8,9 @@ import ceos.study.vote.global.common.PartType;
 import java.util.List;
 
 public interface LeaderService {
-    Integer vote(LeaderRequestDTO.Vote request, User user);
+    Leader vote(LeaderRequestDTO.Vote request, User user);
 
     List<Leader> getCandidates(PartType part);
+
+    Integer getTotalVotes(PartType part);
 }

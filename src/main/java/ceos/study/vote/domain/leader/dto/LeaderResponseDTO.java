@@ -13,17 +13,7 @@ public class LeaderResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     @Getter
-    public static class Details{
-        private Long id;
-        private String name;
-        private String description;
-    }
-
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Getter
-    public static class General{
+    public static class VoteResult{
         private Long id;
         private String name;
         private Integer voteNum;
@@ -33,8 +23,30 @@ public class LeaderResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     @Getter
-    public static class GeneralList{
-        private List<General> candidates;
+    public static class VoteStats {
+        private Long id;
+        private String name;
+        private String description;
+        private Integer voteNum;
+        private Double ratioVotes;
+    }
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    public static class Info {
+        private Long id;
+        private String name;
+        private String description;
+    }
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    public static class StatsList {
+        private List<VoteStats> candidates;
         private Integer totalVotes;
     }
 }

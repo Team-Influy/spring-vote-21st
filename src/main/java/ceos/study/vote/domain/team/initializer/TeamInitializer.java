@@ -47,7 +47,7 @@ public class TeamInitializer implements CommandLineRunner {
             }
             List<Team> teams = teamDTOs.stream().map(
                     teamDTO -> Team.builder()
-                            .team(teamDTO.team)
+                            .name(teamDTO.team)
                             .description(teamDTO.description)
                             .build()).toList();
 

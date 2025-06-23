@@ -11,14 +11,14 @@ public class TeamConverter {
         return TeamResponseDto.VoteResultDto.builder()
                 .id(user.getId())
                 .teamId(team.getId())
-                .teamType(team.getTeam())
+                .teamType(team.getName())
                 .build();
     }
 
     public static TeamResponseDto.VoteStatusDto toVoteStatusDto(Team team, Integer totalVotes) {
         return TeamResponseDto.VoteStatusDto.builder()
                 .id(team.getId())
-                .team(team.getTeam())
+                .team(team.getName())
                 .description(team.getDescription())
                 .numVotes(team.getVoteNum())
                 .ratioVotes(Math.round(((double) team.getVoteNum() / totalVotes) * 10000) / 100.0)
@@ -36,7 +36,7 @@ public class TeamConverter {
         return teamList.stream()
                 .map(team -> TeamResponseDto.CandidateDto.builder()
                         .id(team.getId())
-                        .team(team.getTeam())
+                        .team(team.getName())
                         .description(team.getDescription())
                         .build())
                 .toList();

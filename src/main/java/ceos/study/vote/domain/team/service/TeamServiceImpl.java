@@ -24,11 +24,11 @@ public class TeamServiceImpl implements TeamService {
     @Override
     @Transactional
     public TeamResponseDto.VoteResultDto vote(User user, TeamRequestDto.VoteDto request) {
-        Team team = teamRepository.findByTeam(request.getTeam())
+        Team team = teamRepository.findByName(request.getTeam())
                 .orElseThrow(() -> new GeneralException(ErrorStatus.TEAM_NOT_FOUND));
 
         // 본인 팀에게 투표 못함
-        if (user.getTeam().equals(team.getTeam())) throw new GeneralException(ErrorStatus.NOT_VALID_VOTE);
+        if (user.getTeam().equals(team.getName())) throw new GeneralException(ErrorStatus.NOT_VALID_VOTE);
 
         // 아직 투표하지 않은 유저만 투표 가능
         if (!user.getTeamVote()) {

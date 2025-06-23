@@ -25,18 +25,33 @@ public class LeaderServiceImpl implements LeaderService {
 
     @Override
     @Transactional
-    public Integer vote(LeaderRequestDTO.Vote request, User user) {
+    public Leader vote(LeaderRequestDTO.Vote request, User user) {
+        if(user.getLeaderVote()){
+            throw new GeneralException(ErrorStatus.ALREADY_VOTED);
+        }
+
         Leader candidate = leaderRepository.findById(request.getId())
                 .orElseThrow(()->new GeneralException(ErrorStatus.LEADER_NOT_FOUND));
+
+        if(!(user.getPart().equals(candidate.getPart()))) {
+            throw new GeneralException(ErrorStatus.WRONG_PART);
+        }
 
         candidate.addVote();
         user.setLeaderVoteTrue();
 
-        return userRepository.countUserByLeaderVoteTrue();
+        return candidate;
     }
 
     @Override
     public List<Leader> getCandidates(PartType part) {
         return leaderRepository.findAllByPart(part);
     }
+
+    @Override
+    public Integer getTotalVotes(PartType part) {
+        return userRepository.countUserByLeaderVoteTrueAndPart(part);
+    }
+
+
 }

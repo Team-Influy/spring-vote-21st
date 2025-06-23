@@ -30,12 +30,13 @@ public class TeamRestController {
     }
 
     @GetMapping("votes/teams/status")
-    @Operation(summary = "데모데이 투표 현황 조회")
+    @Operation(summary = "데모데이 투표 현황 조회 (득표수 내림차순 정렬)")
     public ApiResponse<TeamResponseDto.VoteStatusListDto> status() {
         return ApiResponse.onSuccess(teamService.status());
     }
 
     @GetMapping("candidates/teams")
+    @Operation(summary = "데모데이 후보 조회")
     public ApiResponse<List<TeamResponseDto.CandidateDto>> candidates() {
         return ApiResponse.onSuccess(teamService.candidates());
     }

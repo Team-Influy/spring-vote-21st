@@ -1,10 +1,24 @@
 services:
-  spring:
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  vote:
     image: challonsy/vote
     container_name: vote
-    restart: no
+    restart: always
     ports:
       - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://${DB_URL}:3306/voteDB
+      - SPRING_DATASOURCE_USERNAME=${RDS_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${RDS_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+    depends_on:
+      - redis
 
   nginx:
     image: nginx
@@ -17,5 +31,4 @@ services:
       - /home/ubuntu/nginx/vote.conf:/etc/nginx/conf.d/default.conf
       - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
-      - spring
-
+      - vote

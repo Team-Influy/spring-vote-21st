@@ -5,6 +5,7 @@ import ceos.study.vote.global.common.TeamType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TeamRepository extends JpaRepository<Team, Long> {
@@ -12,4 +13,6 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
 
     @Query("SELECT SUM(t.voteNum) FROM Team t")
     Integer getTotalVotes();
+
+    List<Team> findAllByOrderByVoteNumDesc();
 }

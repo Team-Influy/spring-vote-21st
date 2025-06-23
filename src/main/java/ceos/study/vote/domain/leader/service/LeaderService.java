@@ -13,4 +13,6 @@ public interface LeaderService {
     List<Leader> getCandidates(PartType part);
 
     Integer getTotalVotes(PartType part);
+
+    List<Leader> getCandidatesOrderByVoteNum(PartType part);
 }

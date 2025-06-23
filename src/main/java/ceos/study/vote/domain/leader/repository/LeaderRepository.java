@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface LeaderRepository extends JpaRepository<Leader, Long> {
     List<Leader> findAllByPart(PartType part);
+
+    List<Leader> findAllByPartOrderByVoteNumDesc(PartType part);
 }

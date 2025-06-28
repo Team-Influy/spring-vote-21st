@@ -8,5 +8,5 @@ public interface UserService {
     User signUp(UserRequestDto.SignUpRequestDto request);
     TokenProvider.TokenPair signIn(UserRequestDto.SignInRequestDto request);
     void signOut(String accessToken, User user);
-    TokenProvider.TokenPair reissue(UserRequestDto.ReissueRequestDto request, User user);
+    TokenProvider.TokenPair reissue(UserRequestDto.ReissueRequestDto request);
 }

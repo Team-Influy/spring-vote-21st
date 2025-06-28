@@ -40,7 +40,7 @@ public class LeaderController {
 
     //후보자 정보 조회
     @GetMapping("candidates/leaders/{part}")
-    @Operation(summary = "파트장 투표 현황 조회")
+    @Operation(summary = "파트장 후보 리스트 조회")
     public ApiResponse<List<LeaderResponseDTO.Info>> details(@PathVariable("part") PartType part) {
 
         List<Leader> candidates = leaderService.getCandidates(part);
@@ -51,7 +51,7 @@ public class LeaderController {
 
     //투표 현황
     @GetMapping("votes/leaders/{part}/status")
-    @Operation(summary = "파트장 후보 리스트 조회")
+    @Operation(summary = "파트장 투표 현황 조회")
     public ApiResponse<LeaderResponseDTO.StatsList> voteStats(@PathVariable("part") PartType part) {
 
         List<Leader> candidates = leaderService.getCandidatesOrderByVoteNum(part);

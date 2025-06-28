@@ -40,6 +40,7 @@ public class SecurityConfig {
                                 ,"/user/**"
                                 ,"/candidates/**"
                                 ,"/votes/teams/status"
+                                ,"/votes/leaders/*/status"
                                 ,"/swagger-ui/**"
                                 ,"/swagger-resources/**"
                                 ,"/v3/api-docs/**"

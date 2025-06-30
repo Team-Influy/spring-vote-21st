@@ -44,16 +44,14 @@ public class TokenProvider implements InitializingBean {
 
     public String getEmailFromToken(String token) {
         try {
-            Claims claims = Jwts.parser()
+            return Jwts.parser()
                     .setSigningKey(key)
                     .build()
                     .parseClaimsJws(token)
-                    .getBody();
-            log.info("claims.getSubject() = {}", claims.getSubject());
-            return claims.getSubject(); // subject = email
-        } catch (Exception ex) {
-            log.error("JWT parsing failed: {}", ex.getMessage());
-            return new GeneralException(ErrorStatus.UNSUPPORTED_TOKEN).toString();
+                    .getBody()
+                    .getSubject();
+        } catch (JwtException | IllegalArgumentException e) {
+            throw new GeneralException(ErrorStatus.INVALID_TOKEN);
         }
     }
 

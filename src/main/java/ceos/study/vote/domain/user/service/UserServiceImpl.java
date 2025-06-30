@@ -69,12 +69,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public TokenProvider.TokenPair reissue(UserRequestDto.ReissueRequestDto request, User user) {
-        if (user == null) throw new GeneralException(ErrorStatus.USER_NOT_FOUND);
+    public TokenProvider.TokenPair reissue(UserRequestDto.ReissueRequestDto request) {
         String refreshToken = request.getRefreshToken();
 
         // ValidateToken false 반환 -> 사용하려는 refreshToken이 유효하지 않음 (redis에 없음)
         if (!tokenProvider.validateToken(refreshToken)) throw new GeneralException(ErrorStatus.INVALID_TOKEN);
+
+        String email = tokenProvider.getEmailFromToken(refreshToken);
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new GeneralException(ErrorStatus.USER_NOT_FOUND));
 
         String redisRefreshToken = redisService.getValue(user.getEmail());
         if (StringUtils.isEmpty(refreshToken) || StringUtils.isEmpty(redisRefreshToken) || !redisRefreshToken.equals(refreshToken)) {

@@ -36,10 +36,11 @@ public class SecurityConfig {
                 .formLogin((auth) -> auth.disable())
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/","users/sign-in", "users/sign-up"
+                        .requestMatchers("/","users/sign-in", "users/sign-up", "users/reissue"
                                 ,"/user/**"
                                 ,"/candidates/**"
                                 ,"/votes/teams/status"
+                                ,"/votes/leaders/*/status"
                                 ,"/swagger-ui/**"
                                 ,"/swagger-resources/**"
                                 ,"/v3/api-docs/**"

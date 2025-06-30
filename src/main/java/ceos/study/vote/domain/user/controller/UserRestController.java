@@ -51,7 +51,7 @@ public class UserRestController {
     @PostMapping("/reissue")
     @Operation(summary = "리프레시 토큰으로 액세스 토큰 재발급 API")
     public ApiResponse<UserResponseDto.ReissueResultDto> reissue(@RequestBody @Valid UserRequestDto.ReissueRequestDto request, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-        TokenProvider.TokenPair tokenPair = userService.reissue(request, customUserDetails.getUser());
+        TokenProvider.TokenPair tokenPair = userService.reissue(request);
         return ApiResponse.onSuccess(UserConverter.toReissueResultDto(tokenPair));
     }
 }

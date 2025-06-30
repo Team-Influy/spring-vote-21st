@@ -14,5 +14,5 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
     @Query("SELECT SUM(t.numVotes) FROM Team t")
     Integer getTotalVotes();
 
-    List<Team> findAllByOrderByVoteNumDesc();
+    List<Team> findAllByOrderByNumVotesDesc();
 }

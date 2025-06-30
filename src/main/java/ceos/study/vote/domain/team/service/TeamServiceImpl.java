@@ -45,7 +45,7 @@ public class TeamServiceImpl implements TeamService {
     @Override
     @Transactional(readOnly = true)
     public TeamResponseDto.VoteStatusListDto status() {
-        return TeamConverter.toVoteStatusListDto(teamRepository.findAllByOrderByVoteNumDesc(), teamRepository.getTotalVotes());
+        return TeamConverter.toVoteStatusListDto(teamRepository.findAllByOrderByNumVotesDesc(), teamRepository.getTotalVotes());
     }
 
     @Override

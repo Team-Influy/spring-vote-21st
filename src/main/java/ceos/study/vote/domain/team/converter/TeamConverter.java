@@ -20,8 +20,8 @@ public class TeamConverter {
                 .id(team.getId())
                 .team(team.getName())
                 .description(team.getDescription())
-                .numVotes(team.getVoteNum())
-                .ratioVotes(Math.round(((double) team.getVoteNum() / totalVotes) * 10000) / 100.0)
+                .numVotes(team.getNumVotes())
+                .ratioVotes(Math.round(((double) team.getNumVotes() / totalVotes) * 10000) / 100.0)
                 .build();
     }
 

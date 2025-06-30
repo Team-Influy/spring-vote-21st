@@ -40,7 +40,7 @@ public class TeamResponseDto {
         private String description;
 
         @Schema(description = "득표수", example = "7")
-        private Integer voteNum;
+        private Integer numVotes;
 
         @Schema(description = "득표 퍼센트 (해당 팀 득표수 / 전체 투표수)", example = "15.0")
         private Double ratioVotes;

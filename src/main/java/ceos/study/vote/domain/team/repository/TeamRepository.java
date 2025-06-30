@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface TeamRepository extends JpaRepository<Team, Long> {
     Optional<Team> findByName(TeamType team);
 
-    @Query("SELECT SUM(t.voteNum) FROM Team t")
+    @Query("SELECT SUM(t.numVotes) FROM Team t")
     Integer getTotalVotes();
 
     List<Team> findAllByOrderByVoteNumDesc();

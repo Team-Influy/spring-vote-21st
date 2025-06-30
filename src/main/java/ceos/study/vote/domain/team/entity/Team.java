@@ -2,7 +2,6 @@ package ceos.study.vote.domain.team.entity;
 
 import ceos.study.vote.global.common.BaseEntity;
 import ceos.study.vote.global.common.TeamType;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -29,7 +28,7 @@ public class Team extends BaseEntity {
 
     @Builder.Default
     @Column(nullable = false)
-    private Integer voteNum = 0;
+    private Integer numVotes = 0;
 
-    public void addVote() { voteNum++; }
+    public void addVote() { numVotes++; }
 }
